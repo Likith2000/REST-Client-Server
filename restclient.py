@@ -20,14 +20,19 @@ class RestClient:
             print("GET %s\n" % (r.url))
         return r
 
-    def put(self, path="/", headers=None, params=None, debug=False):
-        if debug:
-            print("PUT %s/%s\n" % (self.url, path))
-
-        r = self.session.put(self.url+"/"+path, headers=headers, params=params)
-        if debug:
-            print("PUT %s\n" % (r.url))
-        return r
+    def put(self, path="/", headers=None, params=None, debug=False, data=None):
+        # if debug:
+        #     print("PUT %s/%s\n" % (self.url, path))
+        # print(data)
+        # r = self.session.put(
+        #     self.url+"/"+path, headers=headers, params=params, data=data)
+        # if debug:
+        #     print("PUT %s\n" % (r.url))
+        # return r
+        url = "http://127.0.0.1:5000/employees"
+        print(data)
+        response = requests.request("PUT", url, data=data, headers=headers)
+        print(response)
 
     def delete(self, path="/", headers=None, params=None, debug=False):
 
@@ -48,7 +53,6 @@ class RestClient:
 
         while True:
             offset = position
-
             params['limit'] = limit
             params['offset'] = offset
             results = self.get(path, params=params,
