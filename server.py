@@ -45,49 +45,12 @@ class Employees(Resource):
     def delete(self):
         conn = db_connect.connect()
         print(request.json)
-        query = conn.execute("delete from employees where LastName='abc'")
+        query = conn.execute(
+            """delete from employees where LastName='%s'""" % request.json['LastName'])
         return{'status': 'success'}
 
 
-class Tracks(Resource):
-    def get(self):
-        conn = db_connect.connect()
-        query = conn.execute(
-            "select trackid, name, composer, unitprice from tracks;")
-        result = {'data': [dict(zip(tuple(query.keys()), i))
-                           for i in query.cursor]}
-        return jsonify(result)
-
-    def post(self):
-        conn = db_connect.connect()
-        print(request.json)
-        Name = request.json['Name']
-        AlbumId = request.json['AlbumId']
-        MediaTypeId = request.json['MediaTypeId']
-        GenreId = request.json['GenreId']
-        Composer = request.json['Composer']
-        Milliseconds = request.json['Milliseconds']
-        Bytes = request.json['Bytes']
-        UnitPrice = request.json['UnitPrice']
-        query = conn.execute("insert into tracks values(null,'{0}','{1}','{2}','{3}', \
-                             '{4}','{5}','{6}','{7}')".format(Name, AlbumId, MediaTypeId,
-                                                              GenreId, Composer, Milliseconds, Bytes, UnitPrice))
-        return {'status': 'success'}
-
-
-class Employees_Name(Resource):
-    def get(self, employee_id):
-        conn = db_connect.connect()
-        query = conn.execute(
-            "select * from employees where EmployeeId =%d " % int(employee_id))
-        result = {'data': [dict(zip(tuple(query.keys()), i))
-                           for i in query.cursor]}
-        return jsonify(result)
-
-
 api.add_resource(Employees, '/employees')  # Route_1
-api.add_resource(Tracks, '/tracks')  # Route_2
-api.add_resource(Employees_Name, '/employees/<employee_id>')  # Route_3
 
 
 if __name__ == '__main__':
