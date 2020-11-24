@@ -4,7 +4,7 @@ from flask_restful import Resource, Api
 from sqlalchemy import create_engine
 from json import dumps
 
-db_connect = create_engine('sqlite:///chinook.db')
+db_connect = create_engine('sqlite:///pbl.db')
 app = Flask(__name__)
 api = Api(app)
 
@@ -123,7 +123,7 @@ class Cricket(Resource):
         Captain = request.json['Captain']
         TeamSize = request.json['TeamSize']
         NoOfForeignPlayers = request.json['NoOfForeignPlayers']
-        HighestRunsBY = request.json['HighestRunsBY']
+        HighestRunsBy = request.json['HighestRunsBy']
         HighestRuns = request.json['HighestRuns']
         HighestWktBy = request.json['HighestWktBy']
         HighestWkt = request.json['HighestWkt']
@@ -142,7 +142,7 @@ class Cricket(Resource):
         query = conn.execute("insert into cricket values('{0}','{1}','{2}','{3}', \
                              '{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}', \
                              '{13}','{14}','{15}','{16}','{17}','{18}','{19}','{20}')".format(Team, Owner, Captain,
-                                                                                              TeamSize, NoOfForeignPlayers, HighestRunsBY, HighestRuns,
+                                                                                              TeamSize, NoOfForeignPlayers, HighestRunsBy, HighestRuns,
                                                                                               HighestWktBy, HighestWkt, BestBattingAvgBy, BestBattingAvg, BestBowlingAvgBy, BestBowlingAvg,
                                                                                               AvgScoreBattingFirst, AvgScoreBattingSecond, MatchesPlayed, won, lost, points, NetRR, HighestTotal))
         return {'status': 'success'}
@@ -203,7 +203,7 @@ class Student(Resource):
         conn = db_connect.connect()
         print(request.json)
         query = conn.execute(
-            """delete from student where StudentId='%s'""" % request.json['StudentId'])
+            """delete from student where Name='%s'""" % request.json['Name'])
         return{'status': 'success'}
 
 
