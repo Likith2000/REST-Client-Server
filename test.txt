@@ -1,0 +1,35 @@
+{
+	  "Team": "RCB",
+        "Owner": "US",
+        "Captain": "H",
+        "TeamSize": "2",
+        "NoOfForeignPlayers": "3",
+        "HighestRunsBY": "3", 
+        "HighestRuns":"4",
+        "HighestWktBy":"5",
+        "HighestWkt" :"5",
+        "BestBattingAvgBy" :"g",
+        "BestBattingAvg":"l",
+        "BestBowlingAvgBy" :"h",
+        "BestBowlingAvg":"3",
+        "AvgScoreBattingFirst":"4",
+        "AvgScoreBattingSecond":"2",
+        "MatchesPlayed":"3",
+        "won":"5",
+        "lost" :"4",
+        "points" :"4",
+        "NetRR" :"3",
+        "HighestTotal":"3"
+}
+
+{
+        "Name":"Mahesh",
+        "DOB": "23-05-2022",
+        "Phone": "233432",
+        "Email": "23@3.vom",
+        "Branch": "cse",
+        "Semester": 2,
+        "CGPA": 9.0,
+        "Quota": "NAN",
+        "YearOfAdmission": 2020
+}
