@@ -70,6 +70,10 @@ class Employees(Resource):
     def delete(self):
         conn = db_connect.connect()
         print(request.json)
+        result1 = conn.execute(
+            """select * from employees where LastName='%s'""" % request.json['LastName'])
+        if not(result1.cursor.fetchall()):
+            return{'error': 'Key does not exist'}
         query = conn.execute(
             """delete from employees where LastName='%s'""" % request.json['LastName'])
         return{'status': 'success'}
@@ -150,7 +154,11 @@ class Cricket(Resource):
     def delete(self):
         conn = db_connect.connect()
         print(request.json)
-        query = conn.execute(
+        result1 = conn.execute(
+            """select * from cricket where Team='%s'""" % request.json['Team'])
+        if not(result1.cursor.fetchall()):
+            return{'error': 'Key does not exist'}
+        results = conn.execute(
             """delete from cricket where Team='%s'""" % request.json['Team'])
         return{'status': 'success'}
 
@@ -202,6 +210,10 @@ class Student(Resource):
     def delete(self):
         conn = db_connect.connect()
         print(request.json)
+        result1 = conn.execute(
+            """select * from student where Name='%s'""" % request.json['Name'])
+        if not(result1.cursor.fetchall()):
+            return{'error': 'Key does not exist'}
         query = conn.execute(
             """delete from student where Name='%s'""" % request.json['Name'])
         return{'status': 'success'}
